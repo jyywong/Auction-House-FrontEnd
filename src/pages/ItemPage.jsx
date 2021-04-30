@@ -12,13 +12,18 @@ const ItemPage = ({match:{params:{id}}}) => {
     const [orderType, setOrderType] = useState('Sell')
     const [orderPrice, setOrderPrice] = useState(true)
     const [pageFunction, setPageFunction] = useState('orders')
+    const [orderVolume, setOrderVolume] = useState({})
+    const [orderPrices, setOrderPrices] = useState({})
 
     useEffect(() => {
         BookServices.getBook(id)
         .then((data)=>setItem(data));
         BookServices.getBookOrders(id)
         .then((data) => setOrders(data))
-
+        BookServices.getBookOrderVolume(id)
+        .then((data)=> setOrderVolume(data))
+        BookServices.getBookOrderPrices(id)
+        .then((data)=> setOrderPrices(data))
     }, [])
 
     const filterByPriceDesc = (a, b) => a.price - b.price  
@@ -33,8 +38,8 @@ const ItemPage = ({match:{params:{id}}}) => {
         <>
             <ItemHeader item={item} />
             <ItemTableChoices orderType={orderType} setOrderType={setOrderType} pageFunction={pageFunction} setPageFunction={setPageFunction}/>
-            <ItemOrdersTable orders={orderFilter(orders)} orderPrice={orderPrice} setOrderPrice={setOrderPrice} />
-            <ItemStatistics/>
+            {/* <ItemOrdersTable orders={orderFilter(orders)} orderPrice={orderPrice} setOrderPrice={setOrderPrice} /> */}
+            <ItemStatistics orderVolume={orderVolume} orderPrices={orderPrices}/>
         </>
     )
 }
