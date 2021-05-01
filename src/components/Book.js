@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 const Book = ({ book }) => {
 	return (
 		<tr>

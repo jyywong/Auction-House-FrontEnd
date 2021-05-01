@@ -8,9 +8,10 @@ const ItemOrdersTable = ({orders, orderPrice, setOrderPrice}) => {
 			<table className="table table-hover">
 				<thead className="thead-light">
 					<tr>
+						<th scope="col"></th>
 						<th scope="col" > User </th>
-						<th scope="col" style={{cursor:'pointer'}}onClick={()=>setOrderPrice(!orderPrice)}>
-							Price {orderPrice ? <FaSortDown/> : <FaSortUp/>}
+						<th scope="col" style={{cursor:'pointer'}} onClick={()=>setOrderPrice(!orderPrice)}>
+							Price {orderPrice ? <FaSortUp/> : <FaSortDown/>}
 						</th>
 						<th scope="col"> Reputation </th>
 						<th scope="col"> Quantity </th>

@@ -1,31 +1,57 @@
 import React from 'react';
+import ItemOrderFilters from './ItemOrderFilters';
 
-const ItemTableChoices = ({ orderType, setOrderType }) => {
+const ItemTableChoices = ({ priceFilter, setPriceFilter, pageFunction, setPageFunction, orderType, setOrderType }) => {
 	return (
 		<div className="container">
 			<div className="card bg-light">
 				<div className="card-body">
 					<div className="row px-3">
-						<h5 className="text-muted">Orders</h5>
-						<h5 className="mx-3 text-muted">Statistics</h5>
+						<h5
+							className="text-muted"
+							style={
+								pageFunction === 'orders' ? (
+									{
+										cursor: 'pointer',
+										borderBottomStyle: 'solid'
+									}
+								) : (
+									{
+										cursor: 'pointer'
+									}
+								)
+							}
+							onClick={() => setPageFunction('orders')}
+						>
+							Orders
+						</h5>
+						<h5
+							className="mx-3 text-muted px-2"
+							style={
+								pageFunction === 'stats' ? (
+									{
+										cursor: 'pointer',
+										borderBottomStyle: 'solid'
+									}
+								) : (
+									{
+										cursor: 'pointer'
+									}
+								)
+							}
+							onClick={() => setPageFunction('stats')}
+						>
+							Statistics
+						</h5>
 					</div>
-					<div className="row">
-						<div className="col">
-							<p className="text-muted mb-0">Order Type</p>
-							<button
-								className={orderType === 'Sell' ? 'btn btn-success' : 'btn btn-outline-success'}
-								onClick={() => setOrderType('Sell')}
-							>
-								Sellers
-							</button>
-							<button
-								className={orderType === 'Buy' ? 'btn btn-primary' : 'btn btn-outline-primary'}
-								onClick={() => setOrderType('Buy')}
-							>
-								Buyers
-							</button>
-						</div>
-					</div>
+					{pageFunction === 'orders' && (
+						<ItemOrderFilters
+							orderType={orderType}
+							setOrderType={setOrderType}
+							priceFilter={priceFilter}
+							setPriceFilter={setPriceFilter}
+						/>
+					)}
 				</div>
 			</div>
 		</div>
