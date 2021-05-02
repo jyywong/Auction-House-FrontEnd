@@ -28,6 +28,8 @@ const ItemPage = ({match:{params:{id}}}) => {
         .then((data)=> setOrderVolume(data))
         BookServices.getBookOrderPrices(id)
         .then((data)=> setOrderPrices(data))
+
+
     }, [])
 
     const filterByPriceDesc = (a, b) => a.price - b.price  
@@ -58,8 +60,15 @@ const ItemPage = ({match:{params:{id}}}) => {
             />
 
             {pageFunction === 'stats' ? 
-            <ItemStatistics orderVolume={orderVolume} orderPrices={orderPrices}/> : 
-            <ItemOrdersTable orders={orderFilter(orders)} orderPrice={orderPrice} setOrderPrice={setOrderPrice} />}
+            <ItemStatistics 
+                orderVolume={orderVolume} 
+                orderPrices={orderPrices}
+            /> : 
+            <ItemOrdersTable 
+                orders={orderFilter(orders)} 
+                orderPrice={orderPrice} 
+                setOrderPrice={setOrderPrice} 
+            />}
             
         </>
     )
