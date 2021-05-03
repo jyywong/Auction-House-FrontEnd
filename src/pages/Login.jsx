@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import BookServices from '../services/BookServices';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
 	const [ username, setUsername ] = useState('');
 	const [ password, setPassword ] = useState('');
+	const history = useHistory();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
 		const formdata = new FormData();
 		formdata.append('username', username);
 		formdata.append('password', password);
-
 		BookServices.login(formdata);
+		setIsLoggedIn(true);
+		history.push('/');
 	};
 	return (
 		<div className="container mt-4">

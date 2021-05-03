@@ -11,9 +11,9 @@ const login = ( formdata ) => fetch('http://127.0.0.1:8000/api/token/', {
     localStorage.setItem('access', data['access'])
     header.delete('Authorization')
     header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
-    console.log(header.get('Authorization'))
 })
 
+const getUserInfo = (id) => fetch(`http://127.0.0.1:8000/api/users/${id}/`).then(res => res.json())
 
 const refreshAccess = () => fetch('http://127.0.0.1:8000/api/token/refresh/', {
     method: 'POST',
@@ -29,6 +29,16 @@ const refreshAccess = () => fetch('http://127.0.0.1:8000/api/token/refresh/', {
     localStorage.setItem('access', data['access'])
 })
 
+const isRefreshValid = () => fetch('http://127.0.0.1:8000/api/token/refresh/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        "refresh": localStorage.getItem('refresh')
+    })
+})
+.then (res => res.ok)
 
 const autoRefreshToken = (res) =>{
     if (res.status == 401){
@@ -72,4 +82,6 @@ export default {
     getOrders,
     login, 
     refreshAccess, 
+    isRefreshValid,
+    getUserInfo
      };

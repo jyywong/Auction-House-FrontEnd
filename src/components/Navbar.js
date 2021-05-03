@@ -1,45 +1,53 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-const Navbar = () => {
-    return (
-        <div>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand " href="#">Auction House</a>
-                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+import React from 'react';
+import { Link } from 'react-router-dom';
+import LoggedInDropdown from './LoggedInDropdown';
+import LoggedOutButtons from './LoggedOutButtons';
+const Navbar = ({ isLoggedIn, setIsLoggedIn, user }) => {
+	return (
+		<div>
+			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a className="navbar-brand " href="#">
+					Auction House
+				</a>
+				<button
+					className="navbar-toggler "
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span className="navbar-toggler-icon" />
+				</button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <Link to={'/'}>
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </Link>
-                        
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                    </ul>
-                    
-                </div>
-            </nav>
-        </div>
-    )
-}
+				<div className="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul className="navbar-nav mr-auto">
+						<li className="nav-item active">
+							<Link to={'/'}>
+								<a className="nav-link" href="#">
+									Home <span className="sr-only">(current)</span>
+								</a>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<a className="nav-link" href="#">
+								Link
+							</a>
+						</li>
+					</ul>
 
-export default Navbar
+					<ul className="navbar-nav ml-auto">
+						{isLoggedIn ? (
+							<LoggedInDropdown setIsLoggedIn={setIsLoggedIn} user={user} />
+						) : (
+							<LoggedOutButtons />
+						)}
+					</ul>
+				</div>
+			</nav>
+		</div>
+	);
+};
+
+export default Navbar;

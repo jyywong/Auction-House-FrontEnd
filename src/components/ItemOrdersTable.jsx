@@ -15,6 +15,9 @@ const ItemOrdersTable = ({orders, orderPrice, setOrderPrice}) => {
 						</th>
 						<th scope="col"> Reputation </th>
 						<th scope="col"> Quantity </th>
+						<th style={{width:"6rem"}}> 
+							PM
+						</th>
 					</tr>
 				</thead>
 				<tbody>
