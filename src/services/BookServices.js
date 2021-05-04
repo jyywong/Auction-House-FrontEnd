@@ -61,6 +61,36 @@ const getBookOrderVolume = (id) => fetch(`http://127.0.0.1:8000/api/book_stats_v
 
 const getBookOrderPrices = (id) => fetch(`http://127.0.0.1:8000/api/book_stats_prices/${id}`).then((res) => res.json());
 
+const createBookOrderWrapper = (id, orderInfo) => {
+    const createBookOrder = () => {
+        console.log(id, orderInfo)
+        header = new Headers()
+        header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
+        header.append('Content-Type','application/json')
+        return fetch(`http://127.0.0.1:8000/api/book_orders/${id}`, {
+        method:'POST',
+        headers: header,
+        body: JSON.stringify({
+            buyorsell: orderInfo.orderType,
+            book: orderInfo.item,
+            price: orderInfo.price,
+            quantity: orderInfo.quantity,
+            quality: 'Used'
+        })
+    })
+    .then((res) => {
+        if (res.status == 401){
+            refreshAccess()
+            .then(res => createBookOrder(id, orderInfo))
+        }
+        else if (res.ok){
+            return res.json()
+        }
+    })
+    }
+    return createBookOrder()
+}
+
 
 const getOrders = () => {
     header = new Headers()
@@ -83,5 +113,6 @@ export default {
     login, 
     refreshAccess, 
     isRefreshValid,
-    getUserInfo
+    getUserInfo,
+    createBookOrderWrapper,
      };

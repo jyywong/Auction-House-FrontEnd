@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemOrder from './ItemOrder'
 import {FaSortDown, FaSortUp} from 'react-icons/fa'
-const ItemOrdersTable = ({orders, orderPrice, setOrderPrice}) => {
+const ItemOrdersTable = ({orders, orderPrice, setOrderPrice, handleModalShow, setModalOrder}) => {
     return (
         <>
             <div className="container mt-3">
@@ -21,7 +21,11 @@ const ItemOrdersTable = ({orders, orderPrice, setOrderPrice}) => {
 					</tr>
 				</thead>
 				<tbody>
-                    {orders.map((order) => <ItemOrder order={order} />)}
+                    {orders.map((order) => <ItemOrder 
+					order={order} 
+					handleModalShow={handleModalShow}
+					setModalOrder={setModalOrder}
+					/>)}
                 </tbody>
 				
 			</table>

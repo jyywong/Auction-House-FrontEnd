@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-const ItemModal = ({ modalShow, handleModalClose, modalOrder, item }) => {
-	const onSubmit = (e) => {
-		e.preventDefault();
-	};
+const NewOrderModal = () => {
 	return (
 		<Modal show={modalShow} onHide={handleModalClose}>
 			<Modal.Header closeButton>
@@ -34,4 +31,4 @@ const ItemModal = ({ modalShow, handleModalClose, modalOrder, item }) => {
 	);
 };
 
-export default ItemModal;
+export default NewOrderModal;

@@ -4,9 +4,22 @@ import ItemOrdersTable from '../components/ItemOrdersTable'
 import ItemStatistics from '../components/ItemStatistics'
 import ItemTableChoices from '../components/ItemTableChoices'
 import BookServices from '../services/BookServices'
+import ItemModal from '../components/ItemModal'
+import FloatingActionButtion from '../components/FloatingActionButtion'
+import OrderFormModal from '../components/OrderFormModal'
 
 
 const ItemPage = ({match:{params:{id}}}) => {
+    const [modalShow, setModalShow] = useState(false)
+    const [modalOrder, setModalOrder] = useState({})
+    const [modalMessage, setModalMessage] = useState()
+    const handleModalClose = () => setModalShow(false)
+
+    const [orderFormShow, setOrderFormShow] = useState(false)
+
+
+
+
     const [item, setItem] = useState({})
     const [orders, setOrders] = useState([])
     const [orderType, setOrderType] = useState('Sell')
@@ -68,8 +81,27 @@ const ItemPage = ({match:{params:{id}}}) => {
                 orders={orderFilter(orders)} 
                 orderPrice={orderPrice} 
                 setOrderPrice={setOrderPrice} 
+                handleModalShow={setModalShow}
+                setModalOrder={setModalOrder}
             />}
-            
+            <FloatingActionButtion
+                orderFormShow={orderFormShow}
+                setOrderFormShow={setOrderFormShow}
+            />
+            <OrderFormModal
+                item={item}
+                orderFormShow={orderFormShow}
+                setOrderFormShow={setOrderFormShow}
+            />
+
+            <ItemModal 
+                modalShow={modalShow}
+                handleModalClose={handleModalClose}
+                modalOrder={modalOrder}
+                item={item}
+
+            />
+        
         </>
     )
 }
