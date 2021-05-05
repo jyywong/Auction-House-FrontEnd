@@ -1,6 +1,8 @@
+
+
+
+
 var header = new Headers()
-
-
 const login = ( formdata ) => fetch('http://127.0.0.1:8000/api/token/', {
     method: 'POST',
     body: formdata
@@ -61,9 +63,30 @@ const getBookOrderVolume = (id) => fetch(`http://127.0.0.1:8000/api/book_stats_v
 
 const getBookOrderPrices = (id) => fetch(`http://127.0.0.1:8000/api/book_stats_prices/${id}`).then((res) => res.json());
 
+const getUserOrders = (id) => fetch(`http://127.0.0.1:8000/api/user_orders/${id}`).then((res) => res.json())
+
+const deleteOrder = (id) => {
+    header = new Headers()
+    header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
+    return fetch(`http://127.0.0.1:8000/api/orders/${id}`, {
+        method:'DELETE',
+        headers: header
+    })
+    .then((res) => {
+        if (res.status == 401){
+            refreshAccess() 
+            .then(res => deleteOrder(id))
+        }
+        else if (res.ok){
+            return res.json()
+        }
+    })
+}
+
+
 const createBookOrderWrapper = (id, orderInfo) => {
     const createBookOrder = () => {
-        console.log(id, orderInfo)
+
         header = new Headers()
         header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
         header.append('Content-Type','application/json')
@@ -80,7 +103,7 @@ const createBookOrderWrapper = (id, orderInfo) => {
     })
     .then((res) => {
         if (res.status == 401){
-            refreshAccess()
+            refreshAccess() 
             .then(res => createBookOrder(id, orderInfo))
         }
         else if (res.ok){
@@ -115,4 +138,6 @@ export default {
     isRefreshValid,
     getUserInfo,
     createBookOrderWrapper,
+    getUserOrders,
+    deleteOrder
      };

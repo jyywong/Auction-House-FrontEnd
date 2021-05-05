@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import BookServices from '../services/BookServices';
 import OrderForm from './OrderForm';
 
-const OrderFormModal = ({ item, orderFormShow, setOrderFormShow }) => {
+const OrderFormModal = ({ isLoggedIn, item, orderFormShow, setOrderFormShow }) => {
 	const [ orderDetails, setOrderDetails ] = useState({
 		orderType: '',
 		item: '',
@@ -24,22 +24,25 @@ const OrderFormModal = ({ item, orderFormShow, setOrderFormShow }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const orderInfo = {
-			orderType: orderDetails.orderType,
-			item: item.id,
-			price: orderDetails.price,
-			quantity: orderDetails.quantity
-		};
 
-		BookServices.createBookOrderWrapper(item.id, orderInfo).then((res) => {
-			setOrderDetails({
-				orderType: '',
-				item: item.name,
-				price: '',
-				quantity: ''
+		if (isLoggedIn) {
+			const orderInfo = {
+				orderType: orderDetails.orderType,
+				item: item.id,
+				price: orderDetails.price,
+				quantity: orderDetails.quantity
+			};
+
+			BookServices.createBookOrderWrapper(item.id, orderInfo).then((res) => {
+				setOrderDetails({
+					orderType: '',
+					item: item.name,
+					price: '',
+					quantity: ''
+				});
+				setOrderFormShow(false);
 			});
-			setOrderFormShow(false);
-		});
+		}
 	};
 	return (
 		<div>

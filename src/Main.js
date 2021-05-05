@@ -6,6 +6,7 @@ import ItemPage from './pages/ItemPage';
 import Login from './pages/Login';
 import BookServices from './services/BookServices';
 import jwt_decode from 'jwt-decode'
+import Profile from './pages/Profile';
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -29,11 +30,15 @@ function App() {
 					user={user} 
 				/>
 				<Route path="/" exact component={Home} />
-				<Route path="/item/:id" component={ItemPage} />
+				<Route path="/item/:id" >
+					<ItemPage isLoggedIn={isLoggedIn}/>
+				</Route>
 				<Route 
 					path="/login" 
 					component={()=> <Login setIsLoggedIn={setIsLoggedIn} />} 
 				/>
+				<Route path="/user/:id" component={() => <Profile user={user} />}/>
+
 			</div>
 		</Router>
 	);

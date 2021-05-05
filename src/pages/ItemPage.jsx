@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {withRouter} from 'react-router-dom'
 import ItemHeader from '../components/ItemHeader'
 import ItemOrdersTable from '../components/ItemOrdersTable'
 import ItemStatistics from '../components/ItemStatistics'
@@ -9,7 +10,7 @@ import FloatingActionButtion from '../components/FloatingActionButtion'
 import OrderFormModal from '../components/OrderFormModal'
 
 
-const ItemPage = ({match:{params:{id}}}) => {
+const ItemPage = ({match:{params:{id}}, isLoggedIn}) => {
     const [modalShow, setModalShow] = useState(false)
     const [modalOrder, setModalOrder] = useState({})
     const [modalMessage, setModalMessage] = useState()
@@ -41,7 +42,6 @@ const ItemPage = ({match:{params:{id}}}) => {
         .then((data)=> setOrderVolume(data))
         BookServices.getBookOrderPrices(id)
         .then((data)=> setOrderPrices(data))
-
 
     }, [])
 
@@ -84,15 +84,22 @@ const ItemPage = ({match:{params:{id}}}) => {
                 handleModalShow={setModalShow}
                 setModalOrder={setModalOrder}
             />}
+            {isLoggedIn &&
             <FloatingActionButtion
                 orderFormShow={orderFormShow}
                 setOrderFormShow={setOrderFormShow}
             />
+            
+            }
+            {isLoggedIn &&
             <OrderFormModal
+                isLoggedIn={isLoggedIn}
                 item={item}
                 orderFormShow={orderFormShow}
                 setOrderFormShow={setOrderFormShow}
             />
+            }
+            
 
             <ItemModal 
                 modalShow={modalShow}
@@ -106,4 +113,4 @@ const ItemPage = ({match:{params:{id}}}) => {
     )
 }
 
-export default ItemPage
+export default withRouter(ItemPage)
