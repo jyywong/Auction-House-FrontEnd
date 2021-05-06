@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { FaSortDown, FaSortUp } from 'react-icons/fa';
 import Order from './Order';
 
-const Table = ({ allOrders, setOrders, orders, tableType, isUsersProfile }) => {
+const Table = ({ setCurrentOrder, setShowEditModal, allOrders, setOrders, orders, tableType, isUsersProfile }) => {
+	const [ sortBy, setSortBy ] = useState({
+		priceAsc: false
+	});
+
+	const handleClick = () => {
+		setSortBy({ priceAsc: !sortBy.priceAsc });
+	};
+	const filterByPriceDesc = (a, b) => a.price - b.price;
+	const filterByPriceAsc = (a, b) => b.price - a.price;
+
+	const sortOrders = (orders) => {
+		let sortedOrders = orders.sort(sortBy.priceAsc ? filterByPriceAsc : filterByPriceDesc);
+		return sortedOrders;
+	};
+
 	return (
 		<React.Fragment>
 			<table className="table table-hover table-striped mt-2">
@@ -14,15 +30,20 @@ const Table = ({ allOrders, setOrders, orders, tableType, isUsersProfile }) => {
 				<thead className="thead-light">
 					<tr>
 						<th scope="col">Book</th>
-						<th scope="col">Price</th>
+						<th className="px-0" scope="col" style={{ cursor: 'pointer' }} onClick={handleClick}>
+							Price {sortBy.priceAsc ? <FaSortDown /> : <FaSortUp />}
+						</th>
 						<th scope="col">Quantity</th>
 						<th scope="col" />
 					</tr>
 				</thead>
 				<tbody>
 					{[
-						...orders.map((order) => (
+						...sortOrders(orders).map((order) => (
 							<Order
+								key={order.id}
+								setCurrentOrder={setCurrentOrder}
+								setShowEditModal={setShowEditModal}
 								allOrders={allOrders}
 								setOrders={setOrders}
 								orders={orders}

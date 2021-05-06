@@ -5,6 +5,7 @@ const TableFilter = ({ bookSearch, setBookSearch }) => {
 		<div className="container">
 			<div className="card bg-light">
 				<div className="card-body">
+					<label htmlFor="">Search order by book name</label>
 					<input
 						class="form-control"
 						type="text"

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ItemModal from './ItemModal';
 import { Button } from 'react-bootstrap';
 
@@ -10,7 +11,10 @@ const ItemOrder = ({ order, handleModalShow, setModalOrder }) => {
 	return (
 		<tr>
 			<td className="text-muted text-sm">{order.buyorsell}ing</td>
-			<td>{order.order_owner}</td>
+			<Link to={`/user/${order.order_owner_id}`}>
+				<td>{order.order_owner}</td>
+			</Link>
+
 			<td>${order.price}</td>
 			<td> Great </td>
 			<td>{order.quantity} </td>

@@ -22,6 +22,7 @@ const ItemOrdersTable = ({orders, orderPrice, setOrderPrice, handleModalShow, se
 				</thead>
 				<tbody>
                     {orders.map((order) => <ItemOrder 
+					key={order.id}
 					order={order} 
 					handleModalShow={handleModalShow}
 					setModalOrder={setModalOrder}

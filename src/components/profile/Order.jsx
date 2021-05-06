@@ -1,7 +1,7 @@
 import React from 'react';
 import BookServices from '../../services/BookServices';
 
-const Order = ({ allOrders, isUsersProfile, order, setOrders, orders }) => {
+const Order = ({ setCurrentOrder, setShowEditModal, allOrders, isUsersProfile, order, setOrders, orders }) => {
 	const handleDelete = () => {
 		// BookServices.deleteOrder(order.id).then((data) => console.log(data));
 		setOrders([
@@ -10,10 +10,11 @@ const Order = ({ allOrders, isUsersProfile, order, setOrders, orders }) => {
 			})
 		]);
 	};
+
 	return (
 		<tr style={{ height: '5rem' }}>
 			<td>{order.book_name}</td>
-			<td>${order.price}</td>
+			<td className="pl-0">${order.price}</td>
 			<td>{order.quantity}</td>
 			<td>
 				{isUsersProfile && (
@@ -21,7 +22,15 @@ const Order = ({ allOrders, isUsersProfile, order, setOrders, orders }) => {
 						<button className="btn btn-outline-info">
 							{order.buyorsell === 'Sell' ? 'Sold' : 'Bought'}
 						</button>
-						<button className="btn btn-outline-primary">Edit</button>
+						<button
+							onClick={() => {
+								setShowEditModal(true);
+								setCurrentOrder(order);
+							}}
+							className="btn btn-outline-primary"
+						>
+							Edit
+						</button>
 						<button onClick={handleDelete} className="btn btn-outline-danger">
 							Delete
 						</button>
