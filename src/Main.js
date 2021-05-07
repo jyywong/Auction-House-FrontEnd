@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import BookServices from './services/BookServices';
 import jwt_decode from 'jwt-decode'
 import Profile from './pages/Profile';
+import Messages from './pages/Messages';
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -38,6 +39,8 @@ function App() {
 					component={()=> <Login setIsLoggedIn={setIsLoggedIn} />} 
 				/>
 				<Route path="/user/:id" component={() => <Profile user={user} />}/>
+				<Route path="/messages" component={() => <Messages user={user}/>}/>
+
 
 			</div>
 		</Router>
