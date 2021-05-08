@@ -1,5 +1,7 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import Logout from './Logout'
+
 
 const LoggedInDropdown = ({setIsLoggedIn, user}) => {
     return (
@@ -9,7 +11,10 @@ const LoggedInDropdown = ({setIsLoggedIn, user}) => {
                     {user.username}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
+                    <Link to={'/messages'} >
+                    <a class="dropdown-item" href="#">Messages</a>
+                    </Link>
+                    
                     <a class="dropdown-item" href="#">Another action</a>
                 <div class="dropdown-divider"></div>
                     <Logout setIsLoggedIn={setIsLoggedIn}/>

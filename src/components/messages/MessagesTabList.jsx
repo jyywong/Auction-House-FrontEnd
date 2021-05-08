@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MessageServices from '../services/MessageServices';
+import MessageServices from '../../services/MessageServices';
 import MessageTab from './MessageTab';
 
 const MessagesTabList = ({ user, showChatBox, setShowChatBox, setCurrentConvo, currentConvo }) => {

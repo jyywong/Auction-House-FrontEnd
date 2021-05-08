@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import ChatBox from '../components/ChatBox';
-import MessagesTabList from '../components/MessagesTabList';
+import React, { useState, useEffect } from 'react';
+import ChatBox from '../components/messages/ChatBox';
+import MessagesTabList from '../components/messages/MessagesTabList';
 
 const Messages = ({ user }) => {
 	const [ showChatBox, setShowChatBox ] = useState(false);
-	const [ currentConvo, setCurrentConvo ] = useState();
+	const [ currentConvo, setCurrentConvo ] = useState({ id: null });
+	const [ conversation, setConversation ] = useState([]);
 
 	return (
 		<React.Fragment>
@@ -24,7 +25,15 @@ const Messages = ({ user }) => {
 						currentConvo={currentConvo}
 						setCurrentConvo={setCurrentConvo}
 					/>
-					{showChatBox && <ChatBox user={user} currentConvo={currentConvo} />}
+					{showChatBox && (
+						<ChatBox
+							user={user}
+							conversation={conversation}
+							setConversation={setConversation}
+							currentConvo={currentConvo}
+							setShowChatBox={setShowChatBox}
+						/>
+					)}
 				</div>
 			</div>
 		</React.Fragment>

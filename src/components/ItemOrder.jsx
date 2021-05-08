@@ -11,9 +11,10 @@ const ItemOrder = ({ order, handleModalShow, setModalOrder }) => {
 	return (
 		<tr>
 			<td className="text-muted text-sm">{order.buyorsell}ing</td>
-			<Link to={`/user/${order.order_owner_id}`}>
-				<td>{order.order_owner}</td>
-			</Link>
+
+			<td>
+				<Link to={`/user/${order.order_owner_id}`}>{order.order_owner}</Link>
+			</td>
 
 			<td>${order.price}</td>
 			<td> Great </td>
