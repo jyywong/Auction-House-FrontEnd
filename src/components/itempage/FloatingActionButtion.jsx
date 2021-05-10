@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FloatingActionButtion = ({ setOrderFormShow }) => {
 	return (
@@ -16,6 +17,10 @@ const FloatingActionButtion = ({ setOrderFormShow }) => {
 			</div>
 		</div>
 	);
+};
+
+FloatingActionButtion.propTypes = {
+	setOrderFormShow: PropTypes.func
 };
 
 export default FloatingActionButtion;

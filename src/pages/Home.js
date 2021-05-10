@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import SearchBar from '../components/SearchBar';
-import Table from '../components/Table';
+import SearchBar from '../components/home/SearchBar';
+import Table from '../components/home/Table';
 import BookServices from '../services/BookServices';
 
 function Home() {
@@ -19,8 +18,8 @@ function Home() {
 
 	return (
 		<div >
-			<SearchBar books={books} search={search} setSearch={setSearch} />
-			<Table books={bookSearch(books)} setBooks={setBooks} />
+			<SearchBar search={search} setSearch={setSearch} />
+			<Table books={bookSearch(books)} />
 		</div>
 	);
 }

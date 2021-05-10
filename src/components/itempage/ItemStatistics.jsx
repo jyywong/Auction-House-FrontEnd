@@ -1,5 +1,6 @@
 import React from 'react';
-import { Line, Bar } from 'react-chartjs-2';
+import PropTypes from 'prop-types';
+import { Line } from 'react-chartjs-2';
 
 const ItemStatistics = ({ orderVolume, orderPrices }) => {
 	const filteredPrices = Object.values(orderPrices).map((price) => (price[0] ? price[0] : null));
@@ -47,28 +48,13 @@ const ItemStatistics = ({ orderVolume, orderPrices }) => {
 					}}
 				/>
 			</div>
-			{/* <div className="container">
-				<Bar
-					height={400}
-					width={200}
-					data={{
-						labels: [ ...Object.keys(orderPrices) ],
-						datasets: [
-							{
-								label: 'Average price of orders per day',
-								data: [ ...Object.values(orderPrices) ],
-								fill: true,
-								backgroundColor: 'rgb(175, 102, 192)'
-							}
-						]
-					}}
-					options={{
-						maintainAspectRatio: false
-					}}
-				/>
-			</div> */}
 		</div>
 	);
+};
+
+ItemStatistics.propTypes = {
+	orderPrices: PropTypes.object,
+	orderVolume: PropTypes.object
 };
 
 export default ItemStatistics;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import ChatBox from '../components/messages/ChatBox';
 import MessagesTabList from '../components/messages/MessagesTabList';
 
@@ -38,6 +39,10 @@ const Messages = ({ user }) => {
 			</div>
 		</React.Fragment>
 	);
+};
+
+Messages.propTypes = {
+	user: PropTypes.object
 };
 
 export default Messages;

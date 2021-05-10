@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import {withRouter} from 'react-router-dom'
-import ItemHeader from '../components/ItemHeader'
-import ItemOrdersTable from '../components/ItemOrdersTable'
-import ItemStatistics from '../components/ItemStatistics'
-import ItemTableChoices from '../components/ItemTableChoices'
+import ItemHeader from '../components/itempage/ItemHeader'
+import ItemOrdersTable from '../components/itempage/ItemOrdersTable'
+import ItemStatistics from '../components/itempage/ItemStatistics'
+import ItemTableChoices from '../components/itempage/ItemTableChoices'
 import BookServices from '../services/BookServices'
-import ItemModal from '../components/ItemModal'
-import FloatingActionButtion from '../components/FloatingActionButtion'
-import OrderFormModal from '../components/OrderFormModal'
+import ItemModal from '../components/itempage/ItemModal'
+import FloatingActionButtion from '../components/itempage/FloatingActionButtion'
+import OrderFormModal from '../components/itempage/OrderFormModal'
 
 
-const ItemPage = ({match:{params:{id}}, isLoggedIn}) => {
+
+const ItemPage = ({match:{params:{id}}, isLoggedIn, user}) => {
     const [modalShow, setModalShow] = useState(false)
     const [modalOrder, setModalOrder] = useState({})
     const [modalMessage, setModalMessage] = useState()
@@ -106,6 +108,8 @@ const ItemPage = ({match:{params:{id}}, isLoggedIn}) => {
                 handleModalClose={handleModalClose}
                 modalOrder={modalOrder}
                 item={item}
+                isLoggedIn={isLoggedIn}
+                user={user}
 
             />
         
@@ -113,4 +117,9 @@ const ItemPage = ({match:{params:{id}}, isLoggedIn}) => {
     )
 }
 
+ItemPage.propTypes = {
+    id: PropTypes.string,
+    isLoggedIn: PropTypes.bool,
+    user: PropTypes.object
+}
 export default withRouter(ItemPage)

@@ -1,4 +1,5 @@
-import BookServices from "./BookServices"
+import AuthServices from "./AuthServices"
+
 
 const baseURL = "http://127.0.0.1:8000/api/"
 
@@ -6,8 +7,29 @@ const getUserConversations = (user) => fetch( baseURL + `user_conversations/${us
 
 const getConversationMessages = (convo) => fetch( baseURL + `conversation_messages/${convo}`).then(res=> res.json())
 
+const createNewConversation = (user, newConvo) => {
+    const header = new Headers()
+    header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
+    header.append('Content-Type','application/json')
+    return fetch(baseURL + `user_conversations/${user}`, {
+        method: 'POST',
+        headers: header,
+        body: JSON.stringify(newConvo)
+    })
+    .then((res) => {
+        
+        if (res.status == 401){
+
+            return AuthServices.refreshAccess()
+            .then(res => createNewConversation(user, newConvo))
+        }
+        else if (res.ok){
+            return res.json()
+        }
+    })
+}
+
 const createNewMessage = (convo, message) => {
-    console.log('hello')
     const header = new Headers()
     header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
     header.append('Content-Type','application/json')
@@ -17,10 +39,8 @@ const createNewMessage = (convo, message) => {
         body: JSON.stringify(message)
     })
     .then((res) => {
-        
         if (res.status == 401){
-
-            return BookServices.refreshAccess()
+            return AuthServices.refreshAccess()
             .then(res => createNewMessage(convo, message))
         }
         else if (res.ok){
@@ -30,4 +50,4 @@ const createNewMessage = (convo, message) => {
     }
 
 
-export default { getUserConversations, getConversationMessages, createNewMessage }
+export default { getUserConversations, getConversationMessages, createNewConversation, createNewMessage }

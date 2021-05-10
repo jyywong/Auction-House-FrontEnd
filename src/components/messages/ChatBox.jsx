@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import MessageServices from '../../services/MessageServices';
 import ChatBoxMessage from './ChatBoxMessage';
 
@@ -54,7 +55,9 @@ const ChatBox = ({ user, conversation, setConversation, currentConvo, setShowCha
 					</div>
 				</div>
 				<div className="card-body overflow-auto">
-					{conversation.map((message) => <ChatBoxMessage user={user} message={message} />)}
+					{conversation.map((message) => (
+						<ChatBoxMessage message={message.id} user={user} message={message} />
+					))}
 
 					<div ref={divRef} />
 				</div>
@@ -80,6 +83,14 @@ const ChatBox = ({ user, conversation, setConversation, currentConvo, setShowCha
 			</div>
 		</div>
 	);
+};
+
+ChatBox.propTypes = {
+	user: PropTypes.object,
+	conversation: PropTypes.object,
+	setConversation: PropTypes.func,
+	currentConvo: PropTypes.object,
+	setShowChatBox: PropTypes.func
 };
 
 export default ChatBox;

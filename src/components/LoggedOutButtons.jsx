@@ -1,25 +1,20 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 export const LoggedOutButtons = () => {
-    return (
-        <>
-            
-            <li className="nav-item">
-                <Link>
-                    <a className="nav-link" href="#">
-                        Sign Up
-                    </a>
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link to={'/login'}>
-                    <a className="nav-link" href="#">
-                        Login
-                    </a>
-                </Link>
-            </li>
-        </>
-    )
-}
+	return (
+		<React.Fragment>
+			<li className="nav-item">
+				<a className="nav-link" href="#">
+					Sign Up
+				</a>
+			</li>
+			<li className="nav-item">
+				<Link className="nav-link" to={'/login'}>
+					Login
+				</Link>
+			</li>
+		</React.Fragment>
+	);
+};
 
-export default LoggedOutButtons
+export default LoggedOutButtons;

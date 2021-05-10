@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import BookServices from '../services/BookServices';
+import AuthServices from '../services/AuthServices';
+import PropTypes from 'prop-types';
 
 const Login = ({ setIsLoggedIn }) => {
 	const [ username, setUsername ] = useState('');
@@ -12,7 +13,7 @@ const Login = ({ setIsLoggedIn }) => {
 		const formdata = new FormData();
 		formdata.append('username', username);
 		formdata.append('password', password);
-		BookServices.login(formdata);
+		AuthServices.login(formdata);
 		setIsLoggedIn(true);
 		history.push('/');
 	};
@@ -50,6 +51,10 @@ const Login = ({ setIsLoggedIn }) => {
 			</div>
 		</div>
 	);
+};
+
+Login.propTypes = {
+	setIsLoggedIn: PropTypes.func
 };
 
 export default Login;

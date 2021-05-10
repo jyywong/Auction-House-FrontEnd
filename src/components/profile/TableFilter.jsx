@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TableFilter = ({ bookSearch, setBookSearch }) => {
 	return (
 		<div className="container">
 			<div className="card bg-light">
 				<div className="card-body">
-					<label htmlFor="">Search order by book name</label>
+					<label>Search order by book name</label>
 					<input
-						class="form-control"
+						className="form-control"
 						type="text"
 						placeholder="Book Name"
 						value={bookSearch}
@@ -19,4 +20,8 @@ const TableFilter = ({ bookSearch, setBookSearch }) => {
 	);
 };
 
+TableFilter.propTypes = {
+	bookSearch: PropTypes.string,
+	setBookSearch: PropTypes.func
+};
 export default TableFilter;

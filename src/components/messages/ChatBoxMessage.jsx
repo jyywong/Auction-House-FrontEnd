@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ChatBoxMessage = ({ user, message }) => {
 	return (
@@ -14,6 +15,11 @@ const ChatBoxMessage = ({ user, message }) => {
 			</div>
 		</React.Fragment>
 	);
+};
+
+ChatBoxMessage.propTypes = {
+	user: PropTypes.object,
+	message: PropTypes.object
 };
 
 export default ChatBoxMessage;

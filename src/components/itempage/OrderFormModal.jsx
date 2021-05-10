@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
-import BookServices from '../services/BookServices';
+import BookServices from '../../services/BookServices';
 import OrderForm from './OrderForm';
 
 const OrderFormModal = ({ isLoggedIn, item, orderFormShow, setOrderFormShow }) => {
@@ -75,6 +76,13 @@ const OrderFormModal = ({ isLoggedIn, item, orderFormShow, setOrderFormShow }) =
 			</Modal>
 		</div>
 	);
+};
+
+OrderFormModal.propTypes = {
+	isLoggedIn: PropTypes.bool,
+	item: PropTypes.object,
+	orderFormShow: PropTypes.bool,
+	setOrderFormShow: PropTypes.func
 };
 
 export default OrderFormModal;

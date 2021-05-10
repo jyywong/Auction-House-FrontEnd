@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LoggedInDropdown from './LoggedInDropdown';
 import LoggedOutButtons from './LoggedOutButtons';
+import PropTypes from 'prop-types'
+
+
 const Navbar = ({ isLoggedIn, setIsLoggedIn, user }) => {
 	return (
 		<div>
@@ -24,10 +27,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, user }) => {
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav mr-auto">
 						<li className="nav-item active">
-							<Link to={'/'}>
-								<a className="nav-link" href="#">
+
+							<Link className="nav-link" to={'/'}>
 									Home <span className="sr-only">(current)</span>
-								</a>
 							</Link>
 						</li>
 						<li className="nav-item">
@@ -49,5 +51,11 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, user }) => {
 		</div>
 	);
 };
+
+Navbar.propTypes = {
+	isLoggedIn: PropTypes.bool,
+	setIsLoggedIn: PropTypes.func,
+	user: PropTypes.object
+}
 
 export default Navbar;

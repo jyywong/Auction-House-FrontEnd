@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import EditModal from '../components/profile/EditModal';
 import Table from '../components/profile/Table';
@@ -95,6 +96,11 @@ const Profile = ({ match: { params: { id } }, user }) => {
 			</div>
 		</React.Fragment>
 	);
+};
+
+Profile.propTypes = {
+	id: PropTypes.number,
+	user: PropTypes.object
 };
 
 export default withRouter(Profile);

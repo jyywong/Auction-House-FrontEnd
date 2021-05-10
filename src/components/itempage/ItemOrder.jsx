@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ItemModal from './ItemModal';
 import { Button } from 'react-bootstrap';
 
 const ItemOrder = ({ order, handleModalShow, setModalOrder }) => {
@@ -28,4 +28,9 @@ const ItemOrder = ({ order, handleModalShow, setModalOrder }) => {
 	);
 };
 
+ItemOrder.propTypes = {
+	order: PropTypes.object,
+	handleModalShow: PropTypes.func,
+	setModalOrder: PropTypes.func
+};
 export default ItemOrder;

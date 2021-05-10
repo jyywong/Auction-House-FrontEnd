@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const MessageTab = ({ user, convo, showChatBox, setShowChatBox, setCurrentConvo, currentConvo }) => {
+const MessageTab = ({ convo, showChatBox, setShowChatBox, setCurrentConvo, currentConvo }) => {
 	const handleClick = () => {
 		!showChatBox && setShowChatBox(true);
 		setCurrentConvo(convo);
@@ -35,6 +36,14 @@ const MessageTab = ({ user, convo, showChatBox, setShowChatBox, setCurrentConvo,
 			</div>
 		</div>
 	);
+};
+
+MessageTab.propTypes = {
+	convo: PropTypes.object,
+	showChatBox: PropTypes.bool,
+	setShowChatBox: PropTypes.func,
+	setCurrentConvo: PropTypes.func,
+	currentConvo: PropTypes.object
 };
 
 export default MessageTab;

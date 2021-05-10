@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { FaSortDown, FaSortUp } from 'react-icons/fa';
 import Order from './Order';
 
@@ -22,10 +23,12 @@ const Table = ({ setCurrentOrder, setShowEditModal, allOrders, setOrders, orders
 		<React.Fragment>
 			<table className="table table-hover table-striped mt-2">
 				<thead className="thead-light">
-					<th>Want to {tableType}</th>
-					<th />
-					<th />
-					<th />
+					<tr>
+						<th>Want to {tableType}</th>
+						<th />
+						<th />
+						<th />
+					</tr>
 				</thead>
 				<thead className="thead-light">
 					<tr>
@@ -56,6 +59,16 @@ const Table = ({ setCurrentOrder, setShowEditModal, allOrders, setOrders, orders
 			</table>
 		</React.Fragment>
 	);
+};
+
+Table.propTypes = {
+	setCurrentOrder: PropTypes.func,
+	setShowEditModal: PropTypes.func,
+	allOrders: PropTypes.arrayOf(PropTypes.object),
+	setOrders: PropTypes.func,
+	orders: PropTypes.arrayOf(PropTypes.object),
+	tableType: PropTypes.string,
+	isUsersProfile: PropTypes.bool
 };
 
 export default Table;

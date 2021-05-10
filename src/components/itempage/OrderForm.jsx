@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const OrderForm = ({ handleSubmit, setOrderDetails, orderDetails }) => {
+const OrderForm = ({ setOrderDetails, orderDetails }) => {
 	return (
 		<div>
 			<div className="form-row">
@@ -63,6 +64,11 @@ const OrderForm = ({ handleSubmit, setOrderDetails, orderDetails }) => {
 			/>
 		</div>
 	);
+};
+
+OrderForm.propTypes = {
+	setOrderDetails: PropTypes.func,
+	orderDetails: PropTypes.object
 };
 
 export default OrderForm;

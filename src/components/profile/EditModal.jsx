@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import BookServices from '../../services/BookServices';
 const EditModal = ({ orders, setOrders, order, showEditModal, handleModalClose }) => {
@@ -69,4 +70,11 @@ const EditModal = ({ orders, setOrders, order, showEditModal, handleModalClose }
 	);
 };
 
+EditModal.propTypes = {
+	orders: PropTypes.arrayOf(PropTypes.object),
+	setOrders: PropTypes.func,
+	order: PropTypes.object,
+	showEditModal: PropTypes.bool,
+	handleModalClose: PropTypes.func
+};
 export default EditModal;

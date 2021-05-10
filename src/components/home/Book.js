@@ -4,10 +4,11 @@ const Book = ({ book }) => {
 	return (
 		<tr>
 			<td />
+			<td>
 			<Link to={`/item/${book.id}`}>
-				<td>{book.name}</td>
+				{book.name}
 			</Link>
-
+			</td>
 			<td>{book.description}</td>
 			<td>{book.author}</td>
 			<td>{book.subject} </td>

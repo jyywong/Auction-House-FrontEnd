@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ItemOrderFilters from './ItemOrderFilters';
 
 const ItemTableChoices = ({ priceFilter, setPriceFilter, pageFunction, setPageFunction, orderType, setOrderType }) => {
@@ -56,6 +57,15 @@ const ItemTableChoices = ({ priceFilter, setPriceFilter, pageFunction, setPageFu
 			</div>
 		</div>
 	);
+};
+
+ItemTableChoices.propTypes = {
+	priceFilter: PropTypes.object,
+	setPriceFilter: PropTypes.func,
+	pageFunction: PropTypes.string,
+	setPageFunction: PropTypes.func,
+	orderType: PropTypes.string,
+	setOrderType: PropTypes.func
 };
 
 export default ItemTableChoices;

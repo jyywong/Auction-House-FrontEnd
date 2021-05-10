@@ -11,7 +11,7 @@ const Logout = ({setIsLoggedIn}) => {
     }
     return (
         <>
-            <a class="dropdown-item" onClick={ onClick }href="#">Logout</a>   
+            <a className="dropdown-item" onClick={ onClick }href="#">Logout</a>   
         </>
     )
 }

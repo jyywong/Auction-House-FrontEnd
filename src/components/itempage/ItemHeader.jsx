@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ItemHeader = ({ item }) => {
 	return (
@@ -28,6 +29,10 @@ const ItemHeader = ({ item }) => {
 			</div>
 		</div>
 	);
+};
+
+ItemHeader.propTypes = {
+	item: PropTypes.object
 };
 
 export default ItemHeader;

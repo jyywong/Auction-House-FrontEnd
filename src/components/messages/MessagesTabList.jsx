@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import MessageServices from '../../services/MessageServices';
 import MessageTab from './MessageTab';
 
@@ -14,7 +15,6 @@ const MessagesTabList = ({ user, showChatBox, setShowChatBox, setCurrentConvo, c
 				{convos.map((convo) => (
 					<MessageTab
 						key={convo.id}
-						user={user}
 						convo={convo}
 						showChatBox={showChatBox}
 						setShowChatBox={setShowChatBox}
@@ -25,6 +25,14 @@ const MessagesTabList = ({ user, showChatBox, setShowChatBox, setCurrentConvo, c
 			</div>
 		</React.Fragment>
 	);
+};
+
+MessagesTabList.propTypes = {
+	user: PropTypes.object,
+	showChatBox: PropTypes.bool,
+	setShowChatBox: PropTypes.func,
+	setCurrentConvo: PropTypes.func,
+	currentConvo: PropTypes.object
 };
 
 export default MessagesTabList;
