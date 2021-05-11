@@ -8,6 +8,7 @@ import jwt_decode from 'jwt-decode'
 import Profile from './pages/Profile';
 import Messages from './pages/Messages';
 import AuthServices from './services/AuthServices';
+import SignUp from './pages/SignUp';
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -22,12 +23,14 @@ function App() {
 			setIsLoggedIn(false)
 		}
 	}, [])
+	
 	return (
 		<Router>
 			<div>
 				<Navbar 
 					isLoggedIn={isLoggedIn} 
 					setIsLoggedIn={setIsLoggedIn}
+					setUser = {setUser}
 					user={user} 
 				/>
 				<Route path="/" exact component={Home} />
@@ -36,8 +39,9 @@ function App() {
 				</Route>
 				<Route 
 					path="/login" 
-					component={()=> <Login setIsLoggedIn={setIsLoggedIn} />} 
+					component={()=> <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} 
 				/>
+				<Route path="/signup" component={SignUp}/>
 				<Route path="/user/:id" component={() => <Profile user={user} />}/>
 				<Route path="/messages" component={() => <Messages user={user}/>}/>
 

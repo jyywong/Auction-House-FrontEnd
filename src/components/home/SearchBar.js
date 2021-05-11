@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const SearchBar = ({search, setSearch}) => {
     
     return (
-        <>
+        <React.Fragment>
             <div className="container mt-4">
                 <div className="card bg-light">
                     <div className="card-title text-center">
@@ -12,12 +12,18 @@ const SearchBar = ({search, setSearch}) => {
                     </div>
                     <div className="card-body">
                         <form >
-                            <input type="text" id="search" className="form-control" placeholder="Search here" value={search} onChange={(e)=> setSearch(e.target.value)}/>
+                            <input type="text" 
+                            id="search" 
+                            data-testid="search"
+                            className="form-control" 
+                            placeholder="Search here" 
+                            value={search} 
+                            onChange={(e)=> setSearch(e.target.value)}/>
                         </form>
                     </div>
                 </div>
             </div>
-        </>
+        </React.Fragment>
     )
 }
 

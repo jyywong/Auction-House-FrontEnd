@@ -15,6 +15,7 @@ const ItemPriceFilter = ({priceFilter, setPriceFilter}) => {
             placeholder="Max price"
             value={priceFilter.max}
             onChange={(e)=> setPriceFilter({max: e.target.value, min: priceFilter.min})}
+            data-testid = "Max"
             />
             <label className="mx-2"> Min </label>
             <input  style={{
@@ -27,6 +28,7 @@ const ItemPriceFilter = ({priceFilter, setPriceFilter}) => {
             placeholder="Min price"
             value={priceFilter.min}
             onChange={(e)=> setPriceFilter({min: e.target.value, max: priceFilter.max})}
+            data-testid = "Min"
             />
         </>
     )

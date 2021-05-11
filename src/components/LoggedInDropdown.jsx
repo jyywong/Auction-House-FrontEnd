@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Logout from './Logout';
 import PropTypes from 'prop-types';
 
-const LoggedInDropdown = ({ setIsLoggedIn, user }) => {
+const LoggedInDropdown = ({ setIsLoggedIn, setUser, user }) => {
 	return (
 		<React.Fragment>
 			<li className="nav-item dropdown">
@@ -27,7 +27,7 @@ const LoggedInDropdown = ({ setIsLoggedIn, user }) => {
 						Another action
 					</a>
 					<div className="dropdown-divider" />
-					<Logout setIsLoggedIn={setIsLoggedIn} />
+					<Logout setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
 				</div>
 			</li>
 		</React.Fragment>

@@ -1,12 +1,12 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 
-const Logout = ({setIsLoggedIn}) => {
+const Logout = ({setIsLoggedIn, setUser}) => {
     const history = useHistory()
     const onClick = () =>{
-        console.log('hello')
         localStorage.clear()
         setIsLoggedIn(false)
+        setUser({})
         history.push('/')
     }
     return (

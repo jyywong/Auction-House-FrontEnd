@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import jwt_decode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 import AuthServices from '../services/AuthServices';
 import PropTypes from 'prop-types';
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn, setUser }) => {
 	const [ username, setUsername ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const history = useHistory();
@@ -13,8 +14,13 @@ const Login = ({ setIsLoggedIn }) => {
 		const formdata = new FormData();
 		formdata.append('username', username);
 		formdata.append('password', password);
-		AuthServices.login(formdata);
-		setIsLoggedIn(true);
+		AuthServices.login(formdata).then((data) => {
+			AuthServices.getUserInfo(jwt_decode(localStorage.getItem('access')).user_id).then((data) =>
+				setUser({ ...data })
+			);
+			setIsLoggedIn(true);
+		});
+
 		history.push('/');
 	};
 	return (

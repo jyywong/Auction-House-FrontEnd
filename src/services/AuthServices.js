@@ -12,6 +12,14 @@ const login = ( formdata ) => fetch(baseURL + 'token/', {
     // header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
 })
 
+const signup = (formdata) => fetch(baseURL + 'users/register/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formdata)
+}).then((res) => res.json())
+
 const getUserInfo = (id) => fetch(baseURL + `users/${id}/`).then(res => res.json())
 
 const refreshAccess = () => fetch(baseURL + 'token/refresh/', {
@@ -37,20 +45,13 @@ const isRefreshValid = () => fetch(baseURL + 'token/refresh/', {
         "refresh": localStorage.getItem('refresh')
     })
 })
-.then (res => res.ok)
+.then (res =>  res.ok )
 
-// const autoRefreshToken = (res) =>{
-//     if (res.status == 401){
-//         refreshAccess()
-//         .then(res => getOrders())
-//     }
-//     else if (res.ok){
-//         return res.json()
-//     }
-// }
+
 export default {
     login, 
     getUserInfo,
     refreshAccess,
-    isRefreshValid
+    isRefreshValid,
+    signup
 }

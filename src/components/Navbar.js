@@ -5,7 +5,7 @@ import LoggedOutButtons from './LoggedOutButtons';
 import PropTypes from 'prop-types'
 
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn, user }) => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn, setUser, user }) => {
 	return (
 		<div>
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,16 +32,12 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, user }) => {
 									Home <span className="sr-only">(current)</span>
 							</Link>
 						</li>
-						<li className="nav-item">
-							<a className="nav-link" href="#">
-								Link
-							</a>
-						</li>
+						
 					</ul>
 
 					<ul className="navbar-nav ml-auto">
 						{isLoggedIn ? (
-							<LoggedInDropdown setIsLoggedIn={setIsLoggedIn} user={user} />
+							<LoggedInDropdown setIsLoggedIn={setIsLoggedIn} setUser={setUser} user={user} />
 						) : (
 							<LoggedOutButtons />
 						)}
