@@ -17,6 +17,7 @@ const MessageTab = ({ convo, showChatBox, setShowChatBox, setCurrentConvo, curre
 					'card mb-2 p-2 shadow-sm '
 				)
 			}
+			data-testid="Tab div"
 		>
 			<div className="row">
 				<div className={!showChatBox ? 'col-4' : 'col'}>

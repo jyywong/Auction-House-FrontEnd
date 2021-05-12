@@ -4,12 +4,12 @@ export const LoggedOutButtons = () => {
 	return (
 		<React.Fragment>
 			<li className="nav-item">
-				<a className="nav-link" href="#">
+				<Link data-testid="Sign Up" className="nav-link" to={'/signup'}>
 					Sign Up
-				</a>
+				</Link>
 			</li>
 			<li className="nav-item">
-				<Link className="nav-link" to={'/login'}>
+				<Link data-testid="Login" className="nav-link" to={'/login'}>
 					Login
 				</Link>
 			</li>

@@ -28,7 +28,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, setUser, user }) => {
 					<ul className="navbar-nav mr-auto">
 						<li className="nav-item active">
 
-							<Link className="nav-link" to={'/'}>
+							<Link data-testid="Home" className="nav-link" to={'/'}>
 									Home <span className="sr-only">(current)</span>
 							</Link>
 						</li>

@@ -1,5 +1,5 @@
 import React from 'react';
-import BookServices from '../../services/BookServices';
+import { FaBook } from 'react-icons/fa';
 
 const Order = ({ setCurrentOrder, setShowEditModal, allOrders, isUsersProfile, order, setOrders, orders }) => {
 	const handleDelete = () => {
@@ -13,13 +13,21 @@ const Order = ({ setCurrentOrder, setShowEditModal, allOrders, isUsersProfile, o
 
 	return (
 		<tr style={{ height: '5rem' }}>
-			<td>{order.book_name}</td>
+			<td style={{ width: '3 rem' }} className="text-center  mx-0">
+				{/* <FaBook /> */}
+				<img
+					style={{ borderRadius: '90%' }}
+					src={`https://picsum.photos/25?random=${Math.floor(Math.random() * 11)}`}
+					alt=""
+				/>
+			</td>
+			<td className="px-0">{order.book_name}</td>
 			<td className="pl-0">${order.price}</td>
 			<td>{order.quantity}</td>
 			<td>
 				{isUsersProfile && (
 					<div className="btn-group">
-						<button className="btn btn-outline-info">
+						<button className="btn btn-sm btn-outline-info">
 							{order.buyorsell === 'Sell' ? 'Sold' : 'Bought'}
 						</button>
 						<button
@@ -27,11 +35,11 @@ const Order = ({ setCurrentOrder, setShowEditModal, allOrders, isUsersProfile, o
 								setShowEditModal(true);
 								setCurrentOrder(order);
 							}}
-							className="btn btn-outline-primary"
+							className="btn btn-sm btn-outline-primary"
 						>
 							Edit
 						</button>
-						<button onClick={handleDelete} className="btn btn-outline-danger">
+						<button onClick={handleDelete} className="btn btn-sm btn-outline-danger">
 							Delete
 						</button>
 					</div>

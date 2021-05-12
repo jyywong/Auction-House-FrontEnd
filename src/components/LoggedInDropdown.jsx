@@ -23,9 +23,9 @@ const LoggedInDropdown = ({ setIsLoggedIn, setUser, user }) => {
 						Messages
 					</Link>
 
-					<a className="dropdown-item" href="#">
-						Another action
-					</a>
+					<Link className="dropdown-item" to={`/user/${user.id}`}>
+						My Profile
+					</Link>
 					<div className="dropdown-divider" />
 					<Logout setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
 				</div>

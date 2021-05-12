@@ -71,6 +71,7 @@ const ChatBox = ({ user, conversation, setConversation, currentConvo, setShowCha
 								placeholder="Your reply"
 								className="form-control"
 								cols="2"
+								data-testid="newChat"
 							/>
 							<div class="input-group-append">
 								<button class="btn btn-success" type="submit">
@@ -87,7 +88,7 @@ const ChatBox = ({ user, conversation, setConversation, currentConvo, setShowCha
 
 ChatBox.propTypes = {
 	user: PropTypes.object,
-	conversation: PropTypes.object,
+	conversation: PropTypes.arrayOf(PropTypes.object),
 	setConversation: PropTypes.func,
 	currentConvo: PropTypes.object,
 	setShowChatBox: PropTypes.func

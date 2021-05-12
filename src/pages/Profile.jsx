@@ -12,11 +12,19 @@ const Profile = ({ match: { params: { id } }, user }) => {
 	const [ bookSearch, setBookSearch ] = useState('');
 	const [ showEditModal, setShowEditModal ] = useState(false);
 	const [ currentOrder, setCurrentOrder ] = useState({});
+	const [ loading, setLoading ] = useState(false);
 
-	useEffect(() => {
-		BookServices.getUserOrders(id).then((data) => setOrders([ ...data ]));
-		user.id == id ? setIsUsersProfile(true) : setIsUsersProfile(false);
-	}, []);
+	useEffect(
+		() => {
+			setLoading(true);
+			BookServices.getUserOrders(id).then((data) => {
+				setOrders([ ...data ]);
+				setLoading(false);
+			});
+			user.id == id ? setIsUsersProfile(true) : setIsUsersProfile(false);
+		},
+		[ id ]
+	);
 
 	const handleModalClose = () => {
 		setShowEditModal(false);
@@ -33,25 +41,11 @@ const Profile = ({ match: { params: { id } }, user }) => {
 						<img
 							src="https://picsum.photos/200"
 							className="card-img-top mt-4"
-							style={{ width: '200px', height: '200px' }}
+							style={{ width: '200px', height: '200px', borderRadius: '50%' }}
 						/>
 					</div>
 					<h1 className="card-title text-center">{orders[0] && orders[0].order_owner}</h1>
 					<br />
-					<div className="container">
-						{/* <div className="row">
-							<div className="col-2 mt-auto">
-								<h5 className="card-title">Reputation</h5>
-							</div>
-							<div className="col-2 mt-auto">
-								<h5 className="card-title">Orders</h5>
-							</div>
-							<div className="col-2 mt-auto">
-								<h5 className="card-title">Other</h5>
-							</div>
-							<div className="col-6" />
-						</div> */}
-					</div>
 					<div className="card-footer">
 						<div className="row px-3">
 							<h5 className="text-muted mb-0">Orders</h5>
@@ -72,6 +66,7 @@ const Profile = ({ match: { params: { id } }, user }) => {
 				<div className="row">
 					<div className="col pr-0">
 						<Table
+							loading={loading}
 							setCurrentOrder={setCurrentOrder}
 							setShowEditModal={setShowEditModal}
 							allOrders={orders}
@@ -83,6 +78,7 @@ const Profile = ({ match: { params: { id } }, user }) => {
 					</div>
 					<div className="col pl-0">
 						<Table
+							loading={loading}
 							setCurrentOrder={setCurrentOrder}
 							setShowEditModal={setShowEditModal}
 							allOrders={orders}
@@ -93,6 +89,13 @@ const Profile = ({ match: { params: { id } }, user }) => {
 						/>
 					</div>
 				</div>
+				{loading && (
+					<div class="d-flex justify-content-center">
+						<div class="spinner-border" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+				)}
 			</div>
 		</React.Fragment>
 	);

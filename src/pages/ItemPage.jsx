@@ -15,14 +15,8 @@ import OrderFormModal from '../components/itempage/OrderFormModal'
 const ItemPage = ({match:{params:{id}}, isLoggedIn, user}) => {
     const [modalShow, setModalShow] = useState(false)
     const [modalOrder, setModalOrder] = useState({})
-    const [modalMessage, setModalMessage] = useState()
-    const handleModalClose = () => setModalShow(false)
-
+    
     const [orderFormShow, setOrderFormShow] = useState(false)
-
-
-
-
     const [item, setItem] = useState({})
     const [orders, setOrders] = useState([])
     const [orderType, setOrderType] = useState('Sell')
@@ -34,21 +28,30 @@ const ItemPage = ({match:{params:{id}}, isLoggedIn, user}) => {
         min: '',
         max: '',
     })
+    const [loading, setLoading] = useState(false)
+
+    const handleModalClose = () => setModalShow(false)
+    const filterByPriceDesc = (a, b) => a.price - b.price  
+    const filterByPriceAsc = (a, b) => b.price - a.price 
+
 
     useEffect(() => {
+        setLoading(true)
         BookServices.getBook(id)
-        .then((data)=>setItem(data));
+        .then((data)=>{setItem(data)});
         BookServices.getBookOrders(id)
         .then((data) => setOrders(data))
         BookServices.getBookOrderVolume(id)
         .then((data)=> setOrderVolume(data))
         BookServices.getBookOrderPrices(id)
-        .then((data)=> setOrderPrices(data))
+        .then((data)=> {
+            setLoading(false)
+            setOrderPrices(data)
+        })
 
     }, [])
 
-    const filterByPriceDesc = (a, b) => a.price - b.price  
-    const filterByPriceAsc = (a, b) => b.price - a.price 
+    
     
     const orderFilter = (orders) =>{
         let orderTypeFiltered = orders
@@ -80,6 +83,7 @@ const ItemPage = ({match:{params:{id}}, isLoggedIn, user}) => {
                 orderPrices={orderPrices}
             /> : 
             <ItemOrdersTable 
+                loading={loading}
                 orders={orderFilter(orders)} 
                 orderPrice={orderPrice} 
                 setOrderPrice={setOrderPrice} 

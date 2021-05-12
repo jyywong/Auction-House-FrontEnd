@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaSortDown, FaSortUp } from 'react-icons/fa';
+import { FaSortDown, FaSortUp, FaBook } from 'react-icons/fa';
 import Order from './Order';
 
-const Table = ({ setCurrentOrder, setShowEditModal, allOrders, setOrders, orders, tableType, isUsersProfile }) => {
+const Table = ({
+	loading,
+	setCurrentOrder,
+	setShowEditModal,
+	allOrders,
+	setOrders,
+	orders,
+	tableType,
+	isUsersProfile
+}) => {
 	const [ sortBy, setSortBy ] = useState({
 		priceAsc: false
 	});
@@ -24,6 +33,7 @@ const Table = ({ setCurrentOrder, setShowEditModal, allOrders, setOrders, orders
 			<table className="table table-hover table-striped mt-2">
 				<thead className="thead-light">
 					<tr>
+						<th />
 						<th>Want to {tableType}</th>
 						<th />
 						<th />
@@ -32,6 +42,7 @@ const Table = ({ setCurrentOrder, setShowEditModal, allOrders, setOrders, orders
 				</thead>
 				<thead className="thead-light">
 					<tr>
+						<th />
 						<th scope="col">Book</th>
 						<th className="px-0" scope="col" style={{ cursor: 'pointer' }} onClick={handleClick}>
 							Price {sortBy.priceAsc ? <FaSortDown /> : <FaSortUp />}
@@ -41,7 +52,7 @@ const Table = ({ setCurrentOrder, setShowEditModal, allOrders, setOrders, orders
 					</tr>
 				</thead>
 				<tbody>
-					{[
+					{!loading && [
 						...sortOrders(orders).map((order) => (
 							<Order
 								key={order.id}

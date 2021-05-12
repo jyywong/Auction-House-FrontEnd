@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Messages from './pages/Messages';
 import AuthServices from './services/AuthServices';
 import SignUp from './pages/SignUp';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -42,9 +43,8 @@ function App() {
 					component={()=> <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} 
 				/>
 				<Route path="/signup" component={SignUp}/>
-				<Route path="/user/:id" component={() => <Profile user={user} />}/>
-				<Route path="/messages" component={() => <Messages user={user}/>}/>
-
+				<Route path="/user/:id" exact component={() => <Profile user={user} />}/>
+				<ProtectedRoute path="/messages" component={() => <Messages user={user}/> } isLoggedIn={isLoggedIn}/>
 
 			</div>
 		</Router>

@@ -13,6 +13,7 @@ const TableFilter = ({ bookSearch, setBookSearch }) => {
 						placeholder="Book Name"
 						value={bookSearch}
 						onChange={(e) => setBookSearch(e.target.value)}
+						data-testid="Search"
 					/>
 				</div>
 			</div>
