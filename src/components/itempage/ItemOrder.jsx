@@ -12,15 +12,19 @@ const ItemOrder = ({ order, handleModalShow, setModalOrder }) => {
 		<tr>
 			<td className="text-muted text-sm">{order.buyorsell}ing</td>
 
-			<td>
-				<Link to={`/user/${order.order_owner_id}`}>{order.order_owner}</Link>
+			<td data-testid="User">
+				<Link to={`/user/${order.order_owner_id}`} data-testid="User link">
+					{order.order_owner}
+				</Link>
 			</td>
 
-			<td>${order.price}</td>
+			<td data-testid="Price" data-test-value={4}>
+				${order.price}
+			</td>
 			<td> Great </td>
-			<td>{order.quantity} </td>
+			<td data-testid="Quantity">{order.quantity} </td>
 			<td>
-				<Button variant="primary" onClick={handleClick}>
+				<Button variant="primary" onClick={handleClick} data-testid="Order Button">
 					{order.buyorsell === 'Buy' ? 'Sell' : 'Buy'}
 				</Button>
 			</td>

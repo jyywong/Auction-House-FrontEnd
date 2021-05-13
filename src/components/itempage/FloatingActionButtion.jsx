@@ -10,6 +10,7 @@ const FloatingActionButtion = ({ setOrderFormShow }) => {
 						className="btn btn-danger btn-lg rounded mb-5 mr-5"
 						style={{ pointerEvents: 'all' }}
 						onClick={() => setOrderFormShow(true)}
+						data-testid="FAB"
 					>
 						Place an order
 					</button>

@@ -1,8 +1,7 @@
-describe('Tests for the home page', () => {
+describe('Logged out homepage tests', () => {
     beforeEach(() => {
         cy.visit('/')
     })
-
     it('Can be opened', () => {
         cy.contains('Auction House')
     })
@@ -50,5 +49,49 @@ describe('Tests for the home page', () => {
         cy.get('[data-testid="Home"]').click()
         cy.contains('Auction House')
         cy.url().should('include', '/')
+    })
+    
+})
+
+describe('Logged in homepage tests', () => {
+    beforeEach(() => {
+        cy.visit('/')
+        cy.get('[data-testid="Login"]').click()
+        cy.get('[data-testid="Username"]').type('testuser2')
+        cy.get('[data-testid="Password"]').type('testpassword')
+        cy.get('[data-testid="Log in"]').click()
+    })
+
+    it('Displays username in navbar when logged in', () => {
+        cy.contains('testuser2')
+    })
+    
+    it('Displays dropdown in navbar when logged in', () => {
+        cy.get('[data-testid="Dropdown"]').click()
+        cy.contains('My Profile')
+        cy.contains('Messages')
+        cy.contains('Logout')
+    })
+
+    it('Goes to correct profile page when "My Profile" is clicked', () => {
+        cy.get('[data-testid="Dropdown"]').click()
+        cy.get('[data-testid="My Profile"]').click()
+        cy.contains('testuser2')
+        cy.url().should('include', '/user/3')
+    })
+
+    it('Goes to correct messages page when "Messages" is clicked', () => {
+        cy.get('[data-testid="Dropdown"]').click()
+        cy.get('[data-testid="Messages"]').click()
+        cy.contains('My Messages')
+        cy.url().should('include', '/messages')
+    })
+
+    it('Logs out when "Logout" is clicked', () => {
+        cy.get('[data-testid="Dropdown"]').click()
+        cy.get('[data-testid="Logout"]').click()
+        cy.contains('testuser2').should('not.exist')
+        cy.contains('Sign Up')
+        cy.contains('Login')
     })
 })

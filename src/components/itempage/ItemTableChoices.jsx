@@ -23,6 +23,7 @@ const ItemTableChoices = ({ priceFilter, setPriceFilter, pageFunction, setPageFu
 								)
 							}
 							onClick={() => setPageFunction('orders')}
+							data-testid="Orders"
 						>
 							Orders
 						</h5>
@@ -41,6 +42,7 @@ const ItemTableChoices = ({ priceFilter, setPriceFilter, pageFunction, setPageFu
 								)
 							}
 							onClick={() => setPageFunction('stats')}
+							data-testid="Statistics"
 						>
 							Statistics
 						</h5>

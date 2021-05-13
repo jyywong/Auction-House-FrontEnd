@@ -47,9 +47,9 @@ const OrderFormModal = ({ isLoggedIn, item, orderFormShow, setOrderFormShow }) =
 	};
 	return (
 		<div>
-			<Modal show={orderFormShow} onHide={handleClose}>
+			<Modal show={orderFormShow} onHide={handleClose} data-testid="Order Modal">
 				<Modal.Header closeButton>
-					<Modal.Title>
+					<Modal.Title data-testid="Order Modal Title">
 						{`${orderDetails.orderType && orderDetails.orderType + 'ing'}
                         ${orderDetails.quantity && orderDetails.quantity + ' copies of'}
                         ${item.name}

@@ -11,7 +11,12 @@ const ItemOrdersTable = ({ loading, orders, orderPrice, setOrderPrice, handleMod
 						<tr>
 							<th scope="col" />
 							<th scope="col"> User </th>
-							<th scope="col" style={{ cursor: 'pointer' }} onClick={() => setOrderPrice(!orderPrice)}>
+							<th
+								scope="col"
+								style={{ cursor: 'pointer' }}
+								onClick={() => setOrderPrice(!orderPrice)}
+								data-testid="Price Filter"
+							>
 								Price {orderPrice ? <FaSortUp /> : <FaSortDown />}
 							</th>
 							<th scope="col"> Reputation </th>

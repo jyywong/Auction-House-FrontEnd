@@ -36,6 +36,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
 								className="form-control"
 								value={username}
 								onChange={(e) => setUsername(e.target.value)}
+								data-testid="Username"
 							/>
 
 							<label> Password </label>
@@ -44,8 +45,14 @@ const Login = ({ setIsLoggedIn, setUser }) => {
 								className="form-control"
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
+								data-testid="Password"
 							/>
-							<button type="submit" name="button" className="btn mt-3 btn-success btn-block">
+							<button
+								type="submit"
+								name="button"
+								className="btn mt-3 btn-success btn-block"
+								data-testid="Log in"
+							>
 								Log in
 							</button>
 						</form>

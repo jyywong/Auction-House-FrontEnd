@@ -29,9 +29,9 @@ const EditModal = ({ orders, setOrders, order, showEditModal, handleModalClose }
 
 	return (
 		<React.Fragment>
-			<Modal show={showEditModal} onHide={handleModalClose}>
+			<Modal show={showEditModal} onHide={handleModalClose} data-testid="Edit Modal">
 				<Modal.Header closeButton>
-					<Modal.Title>
+					<Modal.Title data-testid="Edit Modal Title">
 						Edit: {order.buyorsell}ing {order.book_name} for {order.price}
 					</Modal.Title>
 				</Modal.Header>
@@ -44,6 +44,7 @@ const EditModal = ({ orders, setOrders, order, showEditModal, handleModalClose }
 							placeholder="Price"
 							value={orderEdit.price}
 							onChange={(e) => setOrderEdit({ ...orderEdit, price: e.target.value })}
+							data-testid="Edit Modal Price"
 						/>
 						<label className="mt-2" htmlFor="">
 							Quantity
@@ -54,6 +55,7 @@ const EditModal = ({ orders, setOrders, order, showEditModal, handleModalClose }
 							placeholder="Quantity"
 							value={orderEdit.quantity}
 							onChange={(e) => setOrderEdit({ ...orderEdit, quantity: e.target.value })}
+							data-testid="Edit Modal Quantity"
 						/>
 					</Modal.Body>
 					<Modal.Footer>

@@ -15,15 +15,16 @@ const LoggedInDropdown = ({ setIsLoggedIn, setUser, user }) => {
 					data-toggle="dropdown"
 					aria-haspopup="true"
 					aria-expanded="false"
+					data-testid="Dropdown"
 				>
 					{user.username}
 				</a>
 				<div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-					<Link className="dropdown-item" to={'/messages'}>
+					<Link className="dropdown-item" to={'/messages'} data-testid="Messages">
 						Messages
 					</Link>
 
-					<Link className="dropdown-item" to={`/user/${user.id}`}>
+					<Link className="dropdown-item" to={`/user/${user.id}`} data-testid="My Profile">
 						My Profile
 					</Link>
 					<div className="dropdown-divider" />

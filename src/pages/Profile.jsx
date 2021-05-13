@@ -84,7 +84,7 @@ const Profile = ({ match: { params: { id } }, user }) => {
 							allOrders={orders}
 							setOrders={setOrders}
 							isUsersProfile={isUsersProfile}
-							tableType="Sell"
+							tableType="sell"
 							orders={searchBooks(orders.filter((order) => order.buyorsell === 'Sell'))}
 						/>
 					</div>

@@ -10,12 +10,14 @@ const ItemOrderFilters = ({ orderType, setOrderType, priceFilter, setPriceFilter
 				<button
 					className={orderType === 'Sell' ? 'btn btn-success' : 'btn btn-outline-success'}
 					onClick={() => setOrderType('Sell')}
+					data-testid="Sellers"
 				>
 					Sellers
 				</button>
 				<button
 					className={orderType === 'Buy' ? 'btn btn-primary' : 'btn btn-outline-primary'}
 					onClick={() => setOrderType('Buy')}
+					data-testid="Buyers"
 				>
 					Buyers
 				</button>

@@ -36,9 +36,9 @@ const ItemModal = ({ modalShow, handleModalClose, modalOrder, item, user, isLogg
 		}
 	};
 	return (
-		<Modal show={modalShow} onHide={handleModalClose}>
+		<Modal show={modalShow} onHide={handleModalClose} data-testid="Message Modal">
 			<Modal.Header closeButton>
-				<Modal.Title>Send a message to {modalOrder.order_owner} </Modal.Title>
+				<Modal.Title data-testid="Message Modal Title">Send a message to {modalOrder.order_owner} </Modal.Title>
 			</Modal.Header>
 			<form onSubmit={onSubmit}>
 				<Modal.Body>
@@ -50,13 +50,19 @@ const ItemModal = ({ modalShow, handleModalClose, modalOrder, item, user, isLogg
 						onChange={(e) => {
 							setNewMessage(e.target.value);
 						}}
+						data-testid="Message Modal Text"
 					/>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button type="button" variant="secondary" onClick={handleModalClose}>
+					<Button
+						type="button"
+						variant="secondary"
+						onClick={handleModalClose}
+						data-testid="Message Modal Close"
+					>
 						Close
 					</Button>
-					<Button type="submit" variant="primary">
+					<Button type="submit" variant="primary" data-testid="Message Modal Send">
 						Send
 					</Button>
 				</Modal.Footer>

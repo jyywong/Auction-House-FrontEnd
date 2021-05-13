@@ -8,7 +8,9 @@ const ItemHeader = ({ item }) => {
 				<div className="text-center">
 					<img src="https://picsum.photos/200" />
 				</div>
-				<h1 className="card-title text-center">{item.name}</h1>
+				<h1 className="card-title text-center" data-testid="Item name">
+					{item.name}
+				</h1>
 				<p className="text-muted text-center">by {item.author}</p>
 				<div className="container mb-2">
 					<div className="row">

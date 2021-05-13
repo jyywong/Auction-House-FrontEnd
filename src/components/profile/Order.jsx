@@ -21,13 +21,17 @@ const Order = ({ setCurrentOrder, setShowEditModal, allOrders, isUsersProfile, o
 					alt=""
 				/>
 			</td>
-			<td className="px-0">{order.book_name}</td>
-			<td className="pl-0">${order.price}</td>
-			<td>{order.quantity}</td>
+			<td className="px-0" data-testid="Book Name">
+				{order.book_name}
+			</td>
+			<td className="pl-0" data-testid="Order Price">
+				${order.price}
+			</td>
+			<td data-testid="Order Quantity">{order.quantity}</td>
 			<td>
 				{isUsersProfile && (
 					<div className="btn-group">
-						<button className="btn btn-sm btn-outline-info">
+						<button className="btn btn-sm btn-outline-info" data-testid="BorS Button">
 							{order.buyorsell === 'Sell' ? 'Sold' : 'Bought'}
 						</button>
 						<button
@@ -36,10 +40,15 @@ const Order = ({ setCurrentOrder, setShowEditModal, allOrders, isUsersProfile, o
 								setCurrentOrder(order);
 							}}
 							className="btn btn-sm btn-outline-primary"
+							data-testid="Edit Button"
 						>
 							Edit
 						</button>
-						<button onClick={handleDelete} className="btn btn-sm btn-outline-danger">
+						<button
+							onClick={handleDelete}
+							className="btn btn-sm btn-outline-danger"
+							data-testid="Delete Button"
+						>
 							Delete
 						</button>
 					</div>

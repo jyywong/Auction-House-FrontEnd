@@ -30,7 +30,7 @@ const Table = ({
 
 	return (
 		<React.Fragment>
-			<table className="table table-hover table-striped mt-2">
+			<table className="table table-hover table-striped mt-2" data-testid="Profile Table">
 				<thead className="thead-light">
 					<tr>
 						<th />

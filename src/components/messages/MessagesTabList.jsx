@@ -11,7 +11,11 @@ const MessagesTabList = ({ user, showChatBox, setShowChatBox, setCurrentConvo, c
 	}, []);
 	return (
 		<React.Fragment>
-			<div className={showChatBox ? 'col-4 overflow-auto' : 'col overflow-auto'} style={{ height: '40rem' }}>
+			<div
+				className={showChatBox ? 'col-4 overflow-auto' : 'col overflow-auto'}
+				style={{ height: '40rem' }}
+				data-testid="Tab List"
+			>
 				{convos.map((convo) => (
 					<MessageTab
 						key={convo.id}

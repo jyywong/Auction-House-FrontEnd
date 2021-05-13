@@ -44,7 +44,7 @@ const ChatBox = ({ user, conversation, setConversation, currentConvo, setShowCha
 				<div className="card-header ">
 					<div className="row">
 						<div className="col">
-							<button onClick={handleBack} className="btn btn-primary">
+							<button onClick={handleBack} className="btn btn-primary" data-testid="Back Button">
 								Back
 							</button>
 						</div>
