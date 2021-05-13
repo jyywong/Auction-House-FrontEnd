@@ -4,7 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 import BookServices from '../../services/BookServices';
 import OrderForm from './OrderForm';
 
-const OrderFormModal = ({ isLoggedIn, item, orderFormShow, setOrderFormShow }) => {
+const OrderFormModal = ({ id, isLoggedIn, item, orderFormShow, setOrderFormShow, setOrders }) => {
 	const [ orderDetails, setOrderDetails ] = useState({
 		orderType: '',
 		item: '',
@@ -41,6 +41,7 @@ const OrderFormModal = ({ isLoggedIn, item, orderFormShow, setOrderFormShow }) =
 					price: '',
 					quantity: ''
 				});
+				BookServices.getBookOrders(id).then((data) => setOrders(data));
 				setOrderFormShow(false);
 			});
 		}

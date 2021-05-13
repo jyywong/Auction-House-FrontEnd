@@ -99,8 +99,10 @@ const ItemPage = ({match:{params:{id}}, isLoggedIn, user}) => {
             }
             {isLoggedIn &&
             <OrderFormModal
+            id={id}
                 isLoggedIn={isLoggedIn}
                 item={item}
+                setOrders={setOrders}
                 orderFormShow={orderFormShow}
                 setOrderFormShow={setOrderFormShow}
             />
