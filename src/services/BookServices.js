@@ -1,7 +1,6 @@
-import AuthServices from './AuthServices'
+import AuthServices from './AuthServices';
 
-const baseURL = 'http://127.0.0.1:8000/api/'
-
+const baseURL = 'https://boiling-ridge-27764.herokuapp.com/api/';
 
 const getAllBooks = () => fetch(baseURL + 'books/').then((res) => res.json());
 
@@ -13,79 +12,68 @@ const getBookOrderVolume = (id) => fetch(baseURL + `book_stats_vol/${id}`).then(
 
 const getBookOrderPrices = (id) => fetch(baseURL + `book_stats_prices/${id}`).then((res) => res.json());
 
-const getUserOrders = (id) => fetch(baseURL + `user_orders/${id}`).then((res) => res.json())
+const getUserOrders = (id) => fetch(baseURL + `user_orders/${id}`).then((res) => res.json());
 
 const deleteOrder = (id) => {
-    const header = new Headers()
-    header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
-    return fetch(baseURL +  `orders/${id}`, {
-        method:'DELETE',
-        headers: header
-    })
-    .then((res) => {
-        if (res.status == 401){
-            return AuthServices.refreshAccess() 
-            .then(res => deleteOrder(id))
-        }
-        else if (res.ok){
-            return res.json()
-        }
-    })
-}
+	const header = new Headers();
+	header.append('Authorization', `Bearer ${localStorage.getItem('access')}`);
+	return fetch(baseURL + `orders/${id}`, {
+		method: 'DELETE',
+		headers: header
+	}).then((res) => {
+		if (res.status == 401) {
+			return AuthServices.refreshAccess().then((res) => deleteOrder(id));
+		} else if (res.ok) {
+			return res.json();
+		}
+	});
+};
 
 const editOrder = (id, orderEdit) => {
-    const header = new Headers()
-    header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
-    header.append('Content-Type','application/json')
-    return fetch(baseURL + `orders/${id}`, {
-        method:'PATCH',
-        headers: header,
-        body: JSON.stringify({
-            price: orderEdit.price,
-            quantity: orderEdit.quantity
-        })
-    })
-    .then((res) => {
-        if (res.status == 401){
-            return AuthServices.refreshAccess() 
-            .then(res => editOrder(id, orderEdit))
-        }
-        else if (res.ok){
-            return res.json()
-        }
-    })
-}
-
+	const header = new Headers();
+	header.append('Authorization', `Bearer ${localStorage.getItem('access')}`);
+	header.append('Content-Type', 'application/json');
+	return fetch(baseURL + `orders/${id}`, {
+		method: 'PATCH',
+		headers: header,
+		body: JSON.stringify({
+			price: orderEdit.price,
+			quantity: orderEdit.quantity
+		})
+	}).then((res) => {
+		if (res.status == 401) {
+			return AuthServices.refreshAccess().then((res) => editOrder(id, orderEdit));
+		} else if (res.ok) {
+			return res.json();
+		}
+	});
+};
 
 const createBookOrderWrapper = (id, orderInfo) => {
-    const createBookOrder = () => {
-        const header = new Headers()
-        header.append('Authorization', `Bearer ${localStorage.getItem('access')}`)
-        header.append('Content-Type','application/json')
-        return fetch(baseURL + `book_orders/${id}`, {
-        method:'POST',
-        headers: header,
-        body: JSON.stringify({
-            buyorsell: orderInfo.orderType,
-            book: orderInfo.item,
-            price: orderInfo.price,
-            quantity: orderInfo.quantity,
-            quality: 'Used'
-        })
-    })
-    .then((res) => {
-        if (res.status == 401){
-            return AuthServices.refreshAccess() 
-            .then(res => createBookOrder(id, orderInfo))
-        }
-        else if (res.ok){
-            return res.json()
-        }
-    })
-    }
-    return createBookOrder()
-}
-
+	const createBookOrder = () => {
+		const header = new Headers();
+		header.append('Authorization', `Bearer ${localStorage.getItem('access')}`);
+		header.append('Content-Type', 'application/json');
+		return fetch(baseURL + `book_orders/${id}`, {
+			method: 'POST',
+			headers: header,
+			body: JSON.stringify({
+				buyorsell: orderInfo.orderType,
+				book: orderInfo.item,
+				price: orderInfo.price,
+				quantity: orderInfo.quantity,
+				quality: 'Used'
+			})
+		}).then((res) => {
+			if (res.status == 401) {
+				return AuthServices.refreshAccess().then((res) => createBookOrder(id, orderInfo));
+			} else if (res.ok) {
+				return res.json();
+			}
+		});
+	};
+	return createBookOrder();
+};
 
 // const getOrders = () => {
 //     const header = new Headers()
@@ -95,17 +83,14 @@ const createBookOrderWrapper = (id, orderInfo) => {
 //     headers: header
 // }).then(autoRefreshToken)};
 
-
-
-
-export default { 
-    getAllBooks, 
-    getBook, 
-    getBookOrders,
-    getBookOrderVolume, 
-    getBookOrderPrices, 
-    createBookOrderWrapper,
-    getUserOrders,
-    deleteOrder,
-    editOrder
-     };
+export default {
+	getAllBooks,
+	getBook,
+	getBookOrders,
+	getBookOrderVolume,
+	getBookOrderPrices,
+	createBookOrderWrapper,
+	getUserOrders,
+	deleteOrder,
+	editOrder
+};
