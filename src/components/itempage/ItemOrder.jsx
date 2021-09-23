@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-const ItemOrder = ({ order, handleModalShow, setModalOrder }) => {
+const ItemOrder = ({ isLoggedIn, order, handleModalShow, setModalOrder }) => {
 	const handleClick = () => {
 		setModalOrder({ ...order });
 		handleModalShow(true);
@@ -24,7 +24,12 @@ const ItemOrder = ({ order, handleModalShow, setModalOrder }) => {
 			<td> Great </td>
 			<td data-testid="Quantity">{order.quantity} </td>
 			<td>
-				<Button variant="primary" onClick={handleClick} data-testid="Order Button">
+				<Button
+					variant="primary"
+					onClick={handleClick}
+					data-testid="Order Button"
+					disabled={isLoggedIn ? false : true}
+				>
 					{order.buyorsell === 'Buy' ? 'Sell' : 'Buy'}
 				</Button>
 			</td>

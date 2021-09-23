@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ItemOrder from './ItemOrder';
 import { FaSortDown, FaSortUp } from 'react-icons/fa';
-const ItemOrdersTable = ({ loading, orders, orderPrice, setOrderPrice, handleModalShow, setModalOrder }) => {
+const ItemOrdersTable = ({
+	isLoggedIn,
+	loading,
+	orders,
+	orderPrice,
+	setOrderPrice,
+	handleModalShow,
+	setModalOrder
+}) => {
 	return (
 		<React.Fragment>
 			<div className="container mt-3">
@@ -33,6 +41,7 @@ const ItemOrdersTable = ({ loading, orders, orderPrice, setOrderPrice, handleMod
 									order={order}
 									handleModalShow={handleModalShow}
 									setModalOrder={setModalOrder}
+									isLoggedIn={isLoggedIn}
 								/>
 							))}
 						</tbody>

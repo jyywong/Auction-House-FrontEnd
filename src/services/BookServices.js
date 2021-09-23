@@ -1,6 +1,7 @@
 import AuthServices from './AuthServices';
 
 const baseURL = 'https://boiling-ridge-27764.herokuapp.com/api/';
+// const baseURL = 'http://127.0.0.1:8000/api/';
 
 const getAllBooks = () => fetch(baseURL + 'books/').then((res) => res.json());
 

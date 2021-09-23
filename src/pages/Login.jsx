@@ -14,12 +14,17 @@ const Login = ({ setIsLoggedIn, setUser }) => {
 		const formdata = new FormData();
 		formdata.append('username', username);
 		formdata.append('password', password);
-		AuthServices.login(formdata).then((data) => {
-			AuthServices.getUserInfo(jwt_decode(localStorage.getItem('access')).user_id).then((data) =>
-				setUser({ ...data })
-			);
-			setIsLoggedIn(true);
-		});
+		const loginJson = { username, password };
+		AuthServices.login(loginJson)
+			.then((data) => {
+				AuthServices.getUserInfo(jwt_decode(localStorage.getItem('access')).user_id)
+					.then((data) => {
+						setUser({ ...data });
+						setIsLoggedIn(true);
+					})
+					.catch((error) => console.log(error));
+			})
+			.catch((error) => console.log(error));
 
 		history.push('/');
 	};

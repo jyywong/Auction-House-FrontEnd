@@ -89,6 +89,7 @@ const ItemPage = ({match:{params:{id}}, isLoggedIn, user}) => {
                 setOrderPrice={setOrderPrice} 
                 handleModalShow={setModalShow}
                 setModalOrder={setModalOrder}
+                isLoggedIn={isLoggedIn}
             />}
             {isLoggedIn &&
             <FloatingActionButtion
