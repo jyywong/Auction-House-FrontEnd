@@ -4,11 +4,14 @@ import Table from '../components/home/Table';
 import BookServices from '../services/BookServices';
 
 function Home() {
+	const [ isLoading, setIsLoading ] = useState(false);
 	const [ books, setBooks ] = useState([]);
 	const [ search, setSearch ] = useState('');
 	useEffect(() => {
+		setIsLoading(true);
 		BookServices.getAllBooks().then((data) => {
 			setBooks([ ...data ]);
+			setIsLoading(false);
 		});
 	}, []);
 
@@ -17,9 +20,9 @@ function Home() {
 	};
 
 	return (
-		<div >
+		<div>
 			<SearchBar search={search} setSearch={setSearch} />
-			<Table books={bookSearch(books)} />
+			<Table isLoading={isLoading} books={bookSearch(books)} />
 		</div>
 	);
 }

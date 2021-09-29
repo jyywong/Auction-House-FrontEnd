@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import Book from './Book';
 
-const Table = ({ books }) => {
+const Table = ({ isLoading, books }) => {
 	return (
 		<div className="container mt-3">
 			<table className="table">
@@ -15,18 +15,21 @@ const Table = ({ books }) => {
 						<th scope="col">Subject</th>
 					</tr>
 				</thead>
-				<tbody >
-					{books.map((book) => <Book key={book.id} book={book} />)}
-				</tbody>
+				<tbody>{books.map((book) => <Book key={book.id} book={book} />)}</tbody>
 			</table>
+			{isLoading && (
+				<div class="d-flex justify-content-center">
+					<div class="spinner-border" role="status">
+						<span class="sr-only">Loading...</span>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };
 
 Table.propTypes = {
-	books: PropTypes.arrayOf(
-		PropTypes.object
-	)
-}
+	books: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default Table;

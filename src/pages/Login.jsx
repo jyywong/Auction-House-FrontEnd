@@ -5,6 +5,7 @@ import AuthServices from '../services/AuthServices';
 import PropTypes from 'prop-types';
 
 const Login = ({ setIsLoggedIn, setUser }) => {
+	const [ isLoading, setIsLoading ] = useState(false);
 	const [ username, setUsername ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const history = useHistory();
@@ -33,7 +34,15 @@ const Login = ({ setIsLoggedIn, setUser }) => {
 			<div className="row justify-content-center">
 				<div className="card" style={{ width: '30rem' }}>
 					<div className="card-body">
-						<h3 className="card-title">Log in</h3>
+						{isLoading ? (
+							<div class="d-flex justify-content-center">
+								<div class="spinner-border" role="status">
+									<span class="sr-only">Loading...</span>
+								</div>
+							</div>
+						) : (
+							<h3 className="card-title">Log in</h3>
+						)}
 						<form onSubmit={onSubmit}>
 							<label> Username </label>
 							<input
@@ -63,7 +72,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
 						</form>
 					</div>
 					<div className="card-footer text-muted text-center">
-						Don't have an account? <a href="{% url 'signup' %}"> Sign Up </a>
+						Demo Username: demo | Demo Password: demopassword
 					</div>
 				</div>
 			</div>
